@@ -10,6 +10,10 @@ env/
 .env
 nanobanana_bot/.env
 
+# Configuración local y logs de despliegue
+nanobanana_bot/deploy/deploy.env
+logs/
+
 # Documentación exclusivamente local
 conexion_github.md
 GITHUB_CONEXION.md

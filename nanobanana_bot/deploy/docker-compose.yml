@@ -1,0 +1,26 @@
+# Alternativa a systemd:
+#   docker compose -f nanobanana_bot/deploy/docker-compose.yml up -d --build
+#
+# No expone puertos: el bot usa long polling saliente contra Telegram.
+services:
+  nanobanana-bot:
+    build:
+      context: ../..
+      dockerfile: nanobanana_bot/deploy/Dockerfile
+    image: nanobanana-bot:latest
+    container_name: nanobanana-bot
+    env_file:
+      - ../.env
+    restart: unless-stopped
+    stop_grace_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -f 'nanobanana_bot.bot' >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s

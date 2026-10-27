@@ -1,0 +1,35 @@
+[Unit]
+Description=NanoBanana Telegram Bot (OpenRouter)
+Documentation=https://github.com/orionganimedes/generadormkt
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=@RUN_USER@
+Group=@RUN_GROUP@
+WorkingDirectory=@PROJECT_PATH@
+EnvironmentFile=@PROJECT_PATH@/nanobanana_bot/.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=@PROJECT_PATH@/venv/bin/python -m nanobanana_bot.bot
+Restart=always
+RestartSec=5
+StartLimitIntervalSec=300
+StartLimitBurst=5
+TimeoutStopSec=20
+KillSignal=SIGTERM
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=nanobanana-bot
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
