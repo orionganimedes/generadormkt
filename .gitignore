@@ -1,0 +1,11 @@
+# Entorno virtual y Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# Variables de entorno con claves privadas
+.env
+nanobanana_bot/.env
