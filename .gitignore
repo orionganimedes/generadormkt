@@ -9,3 +9,8 @@ env/
 # Variables de entorno con claves privadas
 .env
 nanobanana_bot/.env
+
+# Documentación exclusivamente local
+conexion_github.md
+GITHUB_CONEXION.md
+
